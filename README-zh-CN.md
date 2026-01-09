@@ -1,0 +1,130 @@
+# NBLM2PPTX - NotebookLM PDF 转 PPTX 工具
+
+将 NotebookLM 导出的 PDF 转换成**底图与文字分离**的 PPTX 演示文稿。
+
+[English](README.md) | [繁體中文](README-zh-TW.md) | [日本語](README-ja.md) | [Español](README-es.md) | [Français](README-fr.md)
+
+## 功能特色
+
+- **AI 智能去字**：使用 Gemini 2.5 Flash 自动移除图片中的文字并重建背景
+- **OCR 文字定位**：精准识别原始文字位置、大小与颜色
+- **底图文字分离**：导出的 PPTX 中，背景图与文字为独立图层，方便后续编辑
+- **批量处理**：支持多页 PDF 或多张图片一次处理
+- **页面选择**：可自由勾选需要处理的页面，节省时间与 API 额度
+
+## 使用方式
+
+### 在 Google Gemini Canvas 中使用
+
+1. 打开 [Google Gemini](https://gemini.google.com/)
+2. 在对话中输入类似以下的提示：
+   ```
+   帮我创建一个可以将 PDF 转换成 PPTX 的网页工具
+   ```
+3. 当 Gemini 进入 **Canvas 模式**（屏幕右侧出现代码编辑区）
+4. 将本项目的 `index-zh-CN.html`（或你偏好的语言版本）完整代码粘贴到 Canvas
+5. 点击 Canvas 右上角的「**Preview**」按钮预览运行
+
+### API Key 设置
+
+> **重要提示**：在 Gemini Canvas 环境中运行时，**无需设置私人 API Key**。系统会自动使用默认的 API 环境。
+
+如果你想在 Canvas 以外的环境运行（例如自建服务器），请在代码中找到以下位置，填入你的 Gemini API Key：
+
+```javascript
+const apiKey = "你的_GEMINI_API_KEY";
+```
+
+> 获取 API Key：前往 [Google AI Studio](https://aistudio.google.com/app/apikey) 创建
+
+## 操作流程
+
+```
+┌─────────────┐    ┌─────────────┐    ┌─────────────┐    ┌─────────────┐
+│  上传 PDF   │ -> │  选择页面   │ -> │  AI 处理    │ -> │  导出 PPTX  │
+│  或图片     │    │  (可多选)   │    │  去字重建   │    │  底图+文字  │
+└─────────────┘    └─────────────┘    └─────────────┘    └─────────────┘
+```
+
+### Step 1：上传文件
+- 拖放或点击上传 NotebookLM 导出的 PDF
+- 也支持 JPG、PNG、WebP 等图片格式
+- 可一次上传多个文件
+
+### Step 2：选择页面
+- 系统自动生成所有页面的缩略图
+- 勾选需要处理的页面（默认全选）
+- 点击「开始处理」进入下一步
+
+### Step 3：AI 处理
+- Gemini 会逐页移除文字并重建背景
+- 处理进度实时显示
+- 每页约需 3-5 秒（含 API 延迟）
+
+### Step 4：导出 PPTX
+- 选择演示文稿比例（16:9 / 9:16 / 4:3）
+- 点击「合并 PPTX」导出
+- 导出时会再次执行 OCR 识别文字位置
+
+## 输出结果
+
+导出的 PPTX 每页包含：
+
+| 图层 | 内容 |
+|------|------|
+| 底层 | 去除文字后的干净背景图 |
+| 上层 | 可编辑的文字框（位置对应原始文字） |
+
+这样的分层结构让你可以：
+- 轻松修改文字内容
+- 更换字体、颜色、大小
+- 调整文字位置
+- 保留原始设计风格
+
+## 技术规格
+
+| 项目 | 说明 |
+|------|------|
+| AI 模型 | Gemini 2.5 Flash (Image Edit + Text Gen) |
+| PDF 解析 | PDF.js 3.11.174 |
+| PPTX 生成 | PptxGenJS 3.12.0 |
+| 渲染分辨率 | 缩略图 0.5x / 处理 2.0x |
+| 支持格式 | PDF, JPG, PNG, WebP, BMP |
+
+## 注意事项
+
+1. **API 额度**：在 Canvas 以外运行时，每次处理都会调用 Gemini API，请注意用量
+2. **Rate Limit**：若遇到 429 错误，系统会自动等待重试
+3. **处理时间**：大量页面建议分批处理
+4. **网络需求**：需要稳定的网络连接
+5. **浏览器**：建议使用 Chrome 或 Edge 最新版本
+
+## 常见问题
+
+### Q: 为什么要用 Gemini Canvas？
+A: Canvas 模式提供了一个安全的沙盒环境来运行前端代码，无需搭建服务器即可运行完整功能。而且会使用默认的 API 环境，无需设置私人 API Key。
+
+### Q: 处理失败怎么办？
+A: 常见原因：
+- API Key 无效或过期（在 Canvas 以外运行时）
+- 网络连接不稳定
+- 图片过大或格式不支持
+- API 调用频率过高（等待后重试）
+
+### Q: 可以离线使用吗？
+A: 不行，本工具需要调用 Gemini API 进行 AI 处理。
+
+## 多语言版本
+
+| 语言 | 文件 |
+|------|------|
+| 繁體中文 | `index.html` |
+| English | `index-en.html` |
+| Español | `index-es.html` |
+| 日本語 | `index-ja.html` |
+| Français | `index-fr.html` |
+| 简体中文 | `index-zh-CN.html` |
+
+## License
+
+MIT License
