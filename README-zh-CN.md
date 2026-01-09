@@ -8,7 +8,7 @@
 
 | 转换前 (NotebookLM PDF) | 转换后 (可编辑 PPTX) |
 |:-----------------------:|:--------------------:|
-| ![Before](assets/demo-before.png) | ![After](assets/demo-after.png) |
+| <img src="assets/demo-after.png" width="400"> | <img src="assets/demo-before.png" width="400"> |
 
 > 左：NotebookLM 原始 PDF（文字嵌入图片中）
 > 右：转换后的 PPTX，干净背景 + 可编辑文字图层

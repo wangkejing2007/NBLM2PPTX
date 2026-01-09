@@ -8,7 +8,7 @@ NotebookLM からエクスポートした PDF を**背景画像とテキスト�
 
 | 変換前 (NotebookLM PDF) | 変換後 (編集可能な PPTX) |
 |:-----------------------:|:------------------------:|
-| ![Before](assets/demo-before.png) | ![After](assets/demo-after.png) |
+| <img src="assets/demo-after.png" width="400"> | <img src="assets/demo-before.png" width="400"> |
 
 > 左：NotebookLM の元の PDF（テキストが画像に埋め込まれている）
 > 右：変換後の PPTX、クリーンな背景 + 編集可能なテキストレイヤー

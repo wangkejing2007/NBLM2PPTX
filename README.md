@@ -8,7 +8,7 @@ Convert NotebookLM exported PDFs into PPTX presentations with **separated backgr
 
 | Before (NotebookLM PDF) | After (Editable PPTX) |
 |:-----------------------:|:---------------------:|
-| ![Before](assets/demo-before.png) | ![After](assets/demo-after.png) |
+| <img src="assets/demo-after.png" width="400"> | <img src="assets/demo-before.png" width="400"> |
 
 > Left: Original PDF from NotebookLM (text embedded in image)
 > Right: Converted PPTX with clean background + editable text layers

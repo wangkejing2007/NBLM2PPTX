@@ -8,7 +8,7 @@ Convertissez les PDF exportés de NotebookLM en présentations PPTX avec **image
 
 | Avant (NotebookLM PDF) | Après (PPTX Éditable) |
 |:----------------------:|:---------------------:|
-| ![Before](assets/demo-before.png) | ![After](assets/demo-after.png) |
+| <img src="assets/demo-after.png" width="400"> | <img src="assets/demo-before.png" width="400"> |
 
 > Gauche : PDF original de NotebookLM (texte intégré dans l'image)
 > Droite : PPTX converti avec arrière-plan propre + couches de texte éditables
